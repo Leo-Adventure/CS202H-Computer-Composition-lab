@@ -3,7 +3,7 @@ The class is CS202H lectured by the computer science and engineering constitude 
 
 This repository contains some important lab codes, the language is assembly language, just go deep into it and start learning MIPS .
 
-Now it has been updated to lab 3 
+Now it has been updated to lab 5 and homewor
 
 ## Lab1
 An overview of assembly language
@@ -59,6 +59,14 @@ When there are many file assembled together, the beginning of program will locat
 
 
 When declaring a label to be global, then the label can be seen by other files assembled together.
+
+## Assignment
+
+Converse the decimal number to binary number and hexadecimal number
+
+And determind whether it is binary palindrome or hexadecimal palindrome.
+
+More detail can be seen from directory `src/homework_code` and `requirement`
 
 
 
