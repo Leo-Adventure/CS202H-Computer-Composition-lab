@@ -63,17 +63,17 @@ CAL_TEST1:
 hex:	# 显示十六进制形式
 	
 	add $s0, $zero, $zero # s0 存储 cnt2 ,初始化为 0
-	add $s2, $s2, $t0 #  t2 存储 hex_num
-	la $s3, chars # t3 存储 chars 地址
+	add $s2, $s2, $t0 #  s2 存储 hex_num
+	la $s3, chars # s3 存储 chars 地址
 	j CAL_TEST2 # jump to middle
 CAL_LOOP2:
 	sll $s5, $s0, 2
 	add $s5, $s3, $s5 # s5 代表当前数组地址
 	div $s2, $s2, 16 # hex_num / 16
-	mflo $s2 # t2 存储商
-	mfhi $s6 # t6 存储余数
+	mflo $s2 # s2 存储商
+	mfhi $s6 # s6 存储余数
 H0:	
-	bne $s6, 0, H1 # 如果是余数$t6是0，就将“0”存在当前数组的地址 $t5 上面
+	bne $s6, 0, H1 # 如果是余数$s6是0，就将“0”存在当前数组的地址 $s5 上面
 	la $s1, h0
 	sw $s1, 0($s5)
 	j fin
@@ -162,11 +162,11 @@ CAL_TEST2:
 	
 Judge:
 	add $t8, $zero, $zero # i = 0
-	add $t9, $zero, $zero # flag = false
+	add $k0, $zero, $zero # flag = false
 	j test1
 loop1:
 	
-	sll $a1, $t8, 2
+	sll $a1, $t8, 2 # t8 是 i
 	add $a1, $a1, $t3
 	lw $a2, 0($a1) # nums[i]
 	sub $t9, $t1, $t8 # cnt - i
@@ -175,21 +175,21 @@ loop1:
 	add $t9, $t9, $t3
 	lw $a3, 0($t9) # nums[cnt - i - 1]
 	beq $a2, $a3, jump
-	add $t9, $zero, 1 # 只要有不相等的就设置 t9 = 1
+	add $k0, $zero, 1 # 只要有不相等的就设置 t9 = 1
 jump:
 	addi $t8, $t8, 1	
 test1:	
 	bne $t8, $t1, loop1
 	
-	beq $t9, 1, print_not1
-	print_string(" is binary palindrome,")
+	beq $k0, 1, print_not1
+	print_string(" is binary palindrome, ")
 	j Judge2
 print_not1:
-	print_string(" is NOT binary palindrome,")
+	print_string(" is NOT binary palindrome, ")
 	
 Judge2:	
 	add $t8, $zero, $zero # i = 0
-	add $t9, $zero, $zero # flag = false
+	add $k1, $zero, $zero # flag = false
 	j test2
 loop2:
 	
@@ -202,7 +202,7 @@ loop2:
 	add $t9, $t9, $s3
 	lw $a3, 0($t9) # chars[cnt - i - 1]
 	beq $a2, $a3, jump2
-	add $t9, $zero, 1 # 只要有不相等的就设置 t9 = 1
+	add $k1, $zero, 1 # 只要有不相等的就设置 t9 = 1
 	
 jump2:
 	addi $t8, $t8, 1	
@@ -214,7 +214,7 @@ test2:
 	add $a0, $zero, $t0
 	syscall 
 	
-	beq $t9, 1, print_not2
+	beq $k1, 1, print_not2
 	print_string(" is hexadecimal palindrome\n")
 	j end1
 print_not2:
