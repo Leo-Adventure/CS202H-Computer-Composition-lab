@@ -1,4 +1,7 @@
 # CS202H-Computer-Composition-lab
+
+[TOC]
+
 The class is CS202H lectured by the computer science and engineering constitude from Sustech.
 
 This repository contains some important lab codes, the language is assembly language, just go deep into it and start learning MIPS .
@@ -120,4 +123,59 @@ And interruption is an event caused by a device which is external to the CPU
     ```
 
 The entrance address of exception handler is 0x80000180
+
+## Lab7 Floating-Point number
+
+#### IEEE 745
+
+signal bit : 0 represents positive and 1 represents negative
+
+exponent: (yyyy + Bias) (float for 8 bits and double for 11 bits) **(0000_0000 and 1111_1111 are reserved for special value, so the range is  from 0000_0001 to 1111_1110**
+
+bias: the half during the minimum 0000_0000 and 1111_1111, which is 0111_1111——$2^{n - 1} -1$
+
+fraction: float for 23 bits and double for 52 bit
+
+**declaration**
+
+```assembly
+.data
+fneg1: .float -1 # s: 1, exp: 0 + 0111_1111; fraction: 0
+fpos1: .float 1
+```
+
+**Infinite and NaN**
+
+when the exponent is all 1. If the fraction is all 0, the value depends on the signal, when the signal is 1, the value is positve infinite, when the signal is 0, the value is negative infinite. If the fraction is not all 0, the valure is NaN
+
+Any operation on NaN will produce NaN
+
+#### load and store float data
+
+**Attention**, when loading and storing double data, the index of floating register should be evened number.
+
+```assembly
+ldc1 $f0, fneg1 # load the double floating data from fneg1 to coproc 1
+ldx1 $f1, fpos1
+add.d $f11, $f0, $f2
+
+lwc1 $f0, fneg1 # load the single precision data from fneg1 to coproc 1
+swc1 $f0, ...
+```
+
+#### Relational
+
+Compare two floating-point values and set conditional flag
+
+```assembly
+c.eq.s
+c.eq.d
+```
+
+#### Conditional jump
+
+ ```assembly
+ bc1t 7, print # if the conditional flag 7 is true, then jump to print
+ bc1f 1, exit # if the conditional flaf 1 is fasle, then jump to exit
+ ```
 
