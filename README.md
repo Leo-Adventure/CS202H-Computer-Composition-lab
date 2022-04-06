@@ -176,6 +176,24 @@ c.eq.d
 
  ```assembly
  bc1t 7, print # if the conditional flag 7 is true, then jump to print
- bc1f 1, exit # if the conditional flaf 1 is fasle, then jump to exit
+ bc1f 1, exit # if the conditional flag 1 is false, then jump to exit
  ```
 
+## Lab8 Verilog
+
+To generate bitstream, we should have:
+
+- design.v
+- constraint file(xci)
+- project-device
+
+Design-Under-Test vs Test Bench
+
+Structured design (top module, instance module)
+
+Block( Combinational, Sequential)
+
+**reg and wire**
+
+- 除非要求用reg，否则都是使用wire
+- 必须用reg 的情况：initial 以及 always 被赋值的对象必须是reg
