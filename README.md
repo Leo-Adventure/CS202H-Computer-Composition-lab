@@ -360,3 +360,9 @@ jr $ra
 
 
 
+## CPU
+
+更新至控制器（controller）以及 编码器（decoder）
+
+
+
