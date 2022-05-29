@@ -6,7 +6,7 @@ The class is CS202H lectured by the computer science and engineering constitude 
 
 This repository contains some important lab codes, the language is assembly language, just go deep into it and start learning MIPS .
 
-Now it has been updated to **lab 6 and homework 1**
+Now it has been updated to **CPU asm files and homework 2**
 
 ## Lab1
 An overview of assembly language
